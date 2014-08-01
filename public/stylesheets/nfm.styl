@@ -18,17 +18,21 @@ noselect()
 	-ms-user-select none
 	user-select none
 
-
 html, body
 	margin 0 auto
 	padding 0
-	background #282828
+	background #282828 !important;
 	color #f0f0f0
 	font 15px 'Source Sans Pro', sans-serif
 
 *
 	outline none
-	noselect
+	noselect()
+	transition .08s
+
+i
+	font-family 'FontAwesome' !important
+	font-style normal !important
 
 #header
 	position absolute
@@ -38,18 +42,29 @@ html, body
 	width 100%
 
 #logo
-	font 60px 'Gubblebum', Monospace !important
-	padding 5px 17px 5px 10px !important
+	font-family 'Gubblebum', Monospace !important
+	font-size 30px
 
+#explorer
+	height calc(100% - 45px)
+	background #202020
 
-.headerpiece
+.row
+	margin 0 auto !important
+	padding 0 !important
+	max-width 100% !important
+
+.columns
+	padding-left 0 !important
+	padding-right 0 !important
+
+/*.headerpiece
 	font 60px 'Source Sans Pro', 'Open Sans'
 	padding 5px 10px 5px 10px
 	color #29c566
 	background #202020
 	display inline-block
 	transition .15s
-
 .headerpiece:hover
 	color #d0d0d0
 	background #303030
@@ -58,13 +73,5 @@ html, body
 .headerpiece:active
 	color #7dcb9b
 	background #181818
-
-
-
-//@media only screen and (max-width: 760px)
-
-
-
-
-
+*/
 
