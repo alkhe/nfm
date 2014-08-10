@@ -1,28 +1,15 @@
 extends layout
 
 block header
-	div(id='topnav', class='sticky')
-		nav(class='top-bar', data-topbar)
-			ul(class='title-area')
-				li(class='name')
-					h1
-						a(id='logo') nfm
-			section(class='top-bar-section')
-				ul(class='left')
-				ul(class='right')
-					li(class='divider')
-					li
-						a(href='https://github.com/chronize/nfm')
-							i(id='github', class='fa-github')  Github
+	a(id='nfmlogo') nfm
+	a(id='github', href='https://github.com/chronize/nfm')
+		i(id='github', class='fa-github')  Github
 
 block content
-	div(class='row')
-		div(class='small-4 medium-3 large-2 columns')
-			ul(id='explorer', class='side-nav')
-
-
-		div(class='small-8 medium-9 large-10 columns')
-			ul(class='side-nav')
-
+	div(id='menu')
+		div(class='item') File
+		div(class='item') Edit
+		div(class='item') Code
+		div(class='item') View
 
 block footer

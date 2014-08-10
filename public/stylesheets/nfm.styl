@@ -1,14 +1,22 @@
+headline = 15px
+headpadding = 15px
+headborder = 2px
+headheight = 2 * headpadding + headline + headborder
+
+footborder = 1px
+footheight = 20px + footborder
+
 @font-face
 	src url('/fonts/gubblebum.ttf')
 	font-family 'Gubblebum'
 
 transition(rate)
-	transition rate ease-in-out
-	-webkit-transition rate ease-in-out
-	-moz-transition rate ease-in-out
-	-ms-transition rate ease-in-out
-	-o-transition rate ease-in-out
-	-khtml-transition rate ease-in-out
+	transition rate ease-in
+	-webkit-transition rate ease-in
+	-moz-transition rate ease-in
+	-ms-transition rate ease-in
+	-o-transition rate ease-in
+	-khtml-transition rate ease-in
 
 noselect()
 	-webkit-touch-callout none
@@ -21,59 +29,78 @@ noselect()
 html, body
 	margin 0 auto
 	padding 0
-	background #282828 !important;
+	background #202020
 	color #f0f0f0
 	font 15px 'Source Sans Pro', sans-serif
 
 *
 	outline none
 	noselect()
-	transition .08s
+	box-sizing border-box
+	cursor default
 
 i
-	font-family 'FontAwesome' !important
-	font-style normal !important
+	font-family 'FontAwesome'
+	font-style normal
+
+a
+	text-decoration none
+
+#header, #content, #footer
+	position fixed
+	left 0
+	right 0
 
 #header
-	position absolute
 	top 0
-	left 0
+	height headheight
 	background #202020
-	width 100%
+	border-bottom headborder solid #282828
+	a
+		padding headpadding
+		color #29c566
+		background #202020
+		display inline-block
+		height 100%
+		line-height headline
+		transition .05s
+		&:hover
+			color #d0d0d0
+			background #282828
+		&:active
+			color #7dcb9b
+			background #181818
 
-#logo
-	font-family 'Gubblebum', Monospace !important
+#content
+	top headheight
+	bottom footheight
+
+#footer
+	bottom 0
+	height footheight
+	border-top footborder solid #29c566
+	background #181818
+
+#nfmlogo
+	float left
+	font-family 'Gubblebum', Monospace
 	font-size 30px
 
-#explorer
-	height calc(100% - 45px) !important;
-	max-height calc(100% - 45px) !important
-	background #202020
-	overflow auto
+#github
+	float right
 
-.row
-	margin 0 auto !important
-	padding 0 !important
-	max-width 100% !important
-
-.columns
-	padding-left 0 !important
-	padding-right 0 !important
-
-/*.headerpiece
-	font 60px 'Source Sans Pro', 'Open Sans'
-	padding 5px 10px 5px 10px
-	color #29c566
-	background #202020
-	display inline-block
-	transition .15s
-.headerpiece:hover
-	color #d0d0d0
-	background #303030
-	transition .05s
-
-.headerpiece:active
-	color #7dcb9b
+#menu
+	height 20px
 	background #181818
-*/
+	.item
+		display inline-block
+		line-height 8px
+		padding 6px
+		color #f0f0f0
+		transition .05s
+		&:hover
+			background #202020
+		&:active
+			color #7dcb9b
+			background #101010
 

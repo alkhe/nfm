@@ -1,5 +1,3 @@
-$(document).foundation();
-
 $(document).ready(function () {
 	$('a').attr('target', '_blank');
 
@@ -7,7 +5,7 @@ $(document).ready(function () {
 
 	var socket = io('http://systemic.io');
 
-	socket.emit('list', {
+	/*socket.emit('list', {
 		path: '/'
 	});
 
@@ -23,7 +21,7 @@ $(document).ready(function () {
 		for (var i = 0; i < data.files.length; i++) {
 			explorer.append($('<li>').html('<a>' + data.files[i] + '</a>'));
 		}
-	});
+	});*/
 
 });
 
