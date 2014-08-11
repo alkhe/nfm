@@ -127,23 +127,30 @@ a
 			color #7dcb9b
 			background #101010
 
-#explorerquick
-	position absolute
-	top menuheight
-	left 0
-	width explorerwidth
-	height explorerquickheight
-	background #101010
-
 #explorer
 	position absolute
-	top menuheight + explorerquickheight + explorerquickborder
+	top menuheight
 	left 0
 	bottom 0
 	width explorerwidth
 	background #101010
 	.mCSB_container
 		width 100%
+
+#exquick
+	position absolute
+	top 0
+	left 0
+	right 0
+	height explorerquickheight
+	background #101010
+
+#exfs
+	position absolute
+	top explorerquickheight + explorerquickborder
+	left 0
+	right 0
+	bottom 0
 
 #separator
 	position absolute

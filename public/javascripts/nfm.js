@@ -1,40 +1,24 @@
 $(document).ready(function () {
 	$('a').attr('target', '_blank');
 
-	var body = $(document),
-		explorer = $('#explorer').mCustomScrollbar({
-			axis: 'y',
-			theme: 'light-thin',
-			scrollInertia: 300
+	var socket = io('http://systemic.io'),
+		body = $(document),
+		separator = $('#separator').on('mousedown', function() {
+			dragseparator = true;
 		}),
-		explorerinternal = explorer.find('.mCSB_container'),
-		separator = $('#separator'),
 		viewport = $('#viewport').mCustomScrollbar(),
-		socket = io('http://systemic.io'),
-		quickroot = $('#root'),
-		quickup = $('#up'),
-		explorerpath = '/',
-		requestDirectory = function (p) {
-			if (!explorerbusy) {
-				socket.emit('client.list', {
-					path: p
-				});
-				explorerbusy = true;
-			}
-		},
 		drag = false,
-		dragseparator = false,
-		explorerbusy = false;
+		dragseparator = false;
 
-	body.on('mousedown', function (e) {
+	body.on('mousedown', function(e) {
 		drag = true;
-	}).on('mouseup', function (e) {
+	}).on('mouseup', function(e) {
 		drag = false;
 		dragseparator = false;
-	}).on('mousemove', function (e) {
+	}).on('mousemove', function(e) {
 		if (drag) {
 			if (dragseparator) {
-				explorer.css({
+				ex.element.css({
 					width: e.pageX
 				});
 				separator.css({
@@ -47,43 +31,56 @@ $(document).ready(function () {
 		}
 	});
 
-	separator.on('mousedown', function () {
-		dragseparator = true;
-	});
-
-	explorer.on('click', '.item', function () {
-		var self = $(this);
-		if (self.hasClass('folder')) {
-			explorerpath = path.join(explorerpath, self.text());
-			requestDirectory(explorerpath);
+	var Explorer = can.Control.extend({
+		busy: false,
+		path: '/',
+		init: function() {
+			this.element.find('#exfs').mCustomScrollbar({
+				axis: 'y',
+				theme: 'light-thin',
+				scrollInertia: 300
+			});
+			this.container = this.element.find('.mCSB_container');
+			this.requestDirectory();
+		},
+		listDirectory: function(p) {
+			if (!this.busy) {
+				this.busy = true;
+				this.path = p;
+				this.requestDirectory();
+			}
+		},
+		requestDirectory: function() {
+			socket.emit('client.list', {
+				path: this.path
+			});
+		},
+		'.item click': function(item) {
+			if (item.hasClass('folder')) {
+				this.listDirectory(path.join(this.path, item.text()));
+			}
+		},
+		'#root click': function() {
+			this.listDirectory('/');
+		},
+		'#up click': function() {
+			this.listDirectory(path.dirname(this.path));
 		}
-	});
-
-	requestDirectory(explorerpath);
+	}), ex = new Explorer('#explorer', {});
 
 	socket.on('server.list', function (data) {
-		explorerinternal.empty();
+		ex.container.empty();
 		for (var i = 0; i < data.dirs.length; i++) {
-			explorerinternal.append($('<div>', {
+			ex.container.append($('<div>', {
 				class: 'item folder'
 			}).html('<a>' + data.dirs[i] + '</a>'));
 		}
 		for (var i = 0; i < data.files.length; i++) {
-			explorerinternal.append($('<div>', {
+			ex.container.append($('<div>', {
 				class: 'item file'
 			}).html('<a>' + data.files[i] + '</a>'));
 		}
-		explorerbusy = false;
-	});
-
-	quickroot.on('click', function () {
-		explorerpath = '/';
-		requestDirectory(explorerpath);
-	});
-
-	quickup.on('click', function () {
-		explorerpath = path.dirname(explorerpath);
-		requestDirectory(explorerpath);
+		ex.busy = false;
 	});
 
 });

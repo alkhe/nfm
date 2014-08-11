@@ -115,17 +115,9 @@ a {
   color: #7dcb9b;
   background: #101010;
 }
-#explorerquick {
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 250px;
-  height: 20px;
-  background: #101010;
-}
 #explorer {
   position: absolute;
-  top: 41px;
+  top: 20px;
   left: 0;
   bottom: 0;
   width: 250px;
@@ -133,6 +125,21 @@ a {
 }
 #explorer .mCSB_container {
   width: 100%;
+}
+#exquick {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #101010;
+}
+#exfs {
+  position: absolute;
+  top: 21px;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 #separator {
   position: absolute;
