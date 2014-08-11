@@ -1,0 +1,191 @@
+@font-face {
+  src: url("/fonts/gubblebum.ttf");
+  font-family: 'Gubblebum';
+}
+html,
+body {
+  margin: 0 auto;
+  padding: 0;
+  background: #202020;
+  color: #f0f0f0;
+  font: 15px 'Source Sans Pro', sans-serif;
+}
+* {
+  outline: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: border-box;
+  -khtml-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: default;
+}
+i,
+.item:before,
+.quick {
+  font-family: 'FontAwesome';
+  font-style: normal;
+}
+.item:before,
+.quick {
+  font-size: 14px;
+}
+a {
+  text-decoration: none;
+}
+#header,
+#content,
+#footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+#header {
+  top: 0;
+  height: 47px;
+  background: #202020;
+  border-bottom: 2px solid #282828;
+}
+#header a {
+  padding: 15px;
+  color: #29c566;
+  background: #202020;
+  display: inline-block;
+  height: 100%;
+  line-height: 15px;
+  -webkit-transition: 0.05s ease-in;
+  -khtml-transition: 0.05s ease-in;
+  -moz-transition: 0.05s ease-in;
+  -ms-transition: 0.05s ease-in;
+  -o-transition: 0.05s ease-in;
+  transition: 0.05s ease-in;
+}
+#header a:hover {
+  color: #f0f0f0;
+  background: #282828;
+}
+#header a:active {
+  color: #7dcb9b;
+  background: #181818;
+}
+#content {
+  top: 47px;
+  bottom: 21px;
+}
+#footer {
+  bottom: 0;
+  height: 21px;
+  border-top: 1px solid #29c566;
+  background: #101010;
+}
+#nfmlogo {
+  float: left;
+  font-family: 'Gubblebum', Monospace;
+  font-size: 30px;
+}
+#github {
+  float: right;
+}
+#menu {
+  height: 20px;
+  background: #181818;
+}
+#menu .item {
+  display: inline-block;
+  line-height: 8px;
+  padding: 6px;
+  color: #f0f0f0;
+  -webkit-transition: 0.05s ease-in;
+  -khtml-transition: 0.05s ease-in;
+  -moz-transition: 0.05s ease-in;
+  -ms-transition: 0.05s ease-in;
+  -o-transition: 0.05s ease-in;
+  transition: 0.05s ease-in;
+}
+#menu .item:hover {
+  background: #202020;
+}
+#menu .item:active {
+  color: #7dcb9b;
+  background: #101010;
+}
+#explorerquick {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 250px;
+  height: 20px;
+  background: #101010;
+}
+#explorer {
+  position: absolute;
+  top: 41px;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background: #101010;
+}
+#explorer .mCSB_container {
+  width: 100%;
+}
+#separator {
+  position: absolute;
+  top: 20px;
+  left: 250px;
+  bottom: 0;
+  width: 1px;
+  background: #29c566;
+  cursor: ew-resize;
+}
+#viewport {
+  position: absolute;
+  top: 20px;
+  left: 251px;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  background: #141414;
+}
+.quick {
+  display: inline-block;
+  height: 20px;
+  line-height: 4px;
+  padding: 8px;
+  -webkit-transition: 0.05s ease-in;
+  -khtml-transition: 0.05s ease-in;
+  -moz-transition: 0.05s ease-in;
+  -ms-transition: 0.05s ease-in;
+  -o-transition: 0.05s ease-in;
+  transition: 0.05s ease-in;
+}
+.quick:hover {
+  background: #181818;
+}
+.quick:active {
+  color: #7dcb9b;
+  background: #101010;
+}
+.item {
+  padding: 4px;
+  -webkit-transition: 0.1s ease-in;
+  -khtml-transition: 0.1s ease-in;
+  -moz-transition: 0.1s ease-in;
+  -ms-transition: 0.1s ease-in;
+  -o-transition: 0.1s ease-in;
+  transition: 0.1s ease-in;
+}
+.item:hover {
+  background: #181818;
+}
+.folder:before {
+  content: ' ';
+}
+.file:before {
+  content: ' ';
+}
