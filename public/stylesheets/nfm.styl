@@ -17,6 +17,9 @@ separatorwidth = 1px
 nicegreen = #29c566
 niceblue = #00a0f0
 nicewhite = #f0f0f0
+niceyellow = #f0d050
+nicered = #f05050
+nicelime = #89d596
 
 @font-face
 	src url('/fonts/gubblebum.ttf')
@@ -104,15 +107,13 @@ a
 	border-top footborder solid nicegreen
 	background #101010
 
-#nfmlogo
-	float left
-	font-family 'Gubblebum', Monospace
-	font-size 30px
-
-#github
-	float right
+#menu, #explorer, #exquick, #exfs, #separator, #viewport, #logbar
+	position absolute
 
 #menu
+	top 0
+	left 0
+	right 0
 	height menuheight
 	background #181818
 	.item
@@ -128,7 +129,6 @@ a
 			background #101010
 
 #explorer
-	position absolute
 	top menuheight
 	left 0
 	bottom 0
@@ -138,7 +138,6 @@ a
 		width 100%
 
 #exquick
-	position absolute
 	top 0
 	left 0
 	right 0
@@ -146,14 +145,12 @@ a
 	background #101010
 
 #exfs
-	position absolute
 	top explorerquickheight + explorerquickborder
 	left 0
 	right 0
 	bottom 0
 
 #separator
-	position absolute
 	top menuheight
 	left explorerwidth
 	bottom 0
@@ -162,13 +159,29 @@ a
 	cursor ew-resize
 
 #viewport
-	position absolute
 	top menuheight
 	left explorerwidth + separatorwidth
 	right 0
 	bottom 0
 	display inline-block
 	background #141414
+
+#logbar
+	top 0
+	left 0
+	right 0
+	bottom 0
+	background #101010
+	line-height 10px
+	padding 5px
+
+#nfmlogo
+	float left
+	font-family 'Gubblebum', Monospace
+	font-size 30px
+
+#github
+	float right
 
 .quick
 	display inline-block
@@ -193,4 +206,16 @@ a
 
 .file:before
 	content ' '
+
+.log
+	color nicewhite
+
+.success
+	color nicelime
+
+.warn
+	color niceyellow
+
+.err
+	color nicered
 

@@ -84,15 +84,19 @@ a {
   border-top: 1px solid #29c566;
   background: #101010;
 }
-#nfmlogo {
-  float: left;
-  font-family: 'Gubblebum', Monospace;
-  font-size: 30px;
-}
-#github {
-  float: right;
+#menu,
+#explorer,
+#exquick,
+#exfs,
+#separator,
+#viewport,
+#logbar {
+  position: absolute;
 }
 #menu {
+  top: 0;
+  left: 0;
+  right: 0;
   height: 20px;
   background: #181818;
 }
@@ -116,7 +120,6 @@ a {
   background: #101010;
 }
 #explorer {
-  position: absolute;
   top: 20px;
   left: 0;
   bottom: 0;
@@ -127,7 +130,6 @@ a {
   width: 100%;
 }
 #exquick {
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -135,14 +137,12 @@ a {
   background: #101010;
 }
 #exfs {
-  position: absolute;
   top: 21px;
   left: 0;
   right: 0;
   bottom: 0;
 }
 #separator {
-  position: absolute;
   top: 20px;
   left: 250px;
   bottom: 0;
@@ -151,13 +151,29 @@ a {
   cursor: ew-resize;
 }
 #viewport {
-  position: absolute;
   top: 20px;
   left: 251px;
   right: 0;
   bottom: 0;
   display: inline-block;
   background: #141414;
+}
+#logbar {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #101010;
+  line-height: 10px;
+  padding: 5px;
+}
+#nfmlogo {
+  float: left;
+  font-family: 'Gubblebum', Monospace;
+  font-size: 30px;
+}
+#github {
+  float: right;
 }
 .quick {
   display: inline-block;
@@ -195,4 +211,16 @@ a {
 }
 .file:before {
   content: ' ';
+}
+.log {
+  color: #f0f0f0;
+}
+.success {
+  color: #89d596;
+}
+.warn {
+  color: #f0d050;
+}
+.err {
+  color: #f05050;
 }
