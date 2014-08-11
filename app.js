@@ -4,7 +4,6 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var minify = require('express-minify');
 var compression = require('compression');
 
 var app = express();
@@ -27,9 +26,6 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(require('node-sass').middleware(path.join(__dirname, 'public')));
 app.use(compression());
-app.use(minify({
-	cache: path.join(__dirname, 'cache')
-}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
