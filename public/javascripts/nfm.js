@@ -41,7 +41,7 @@ $(document).ready(function () {
 			}
 		},
 		requestDirectory: function() {
-			this.log.log('Getting directory ' + this.path);
+			this.log.log('Get directory ' + this.path);
 			socket.emit('client.list', {
 				path: this.path
 			});
@@ -50,13 +50,15 @@ $(document).ready(function () {
 			this.container.empty();
 			for (i = 0; i < dirs.length; i++) {
 				this.container.append($('<div>', {
-					class: 'item folder'
-				}).html('<a>' + dirs[i] + '</a>'));
+					class: 'item folder',
+					text: dirs[i]
+				}));
 			}
 			for (i = 0; i < files.length; i++) {
 				this.container.append($('<div>', {
-					class: 'item file'
-				}).html('<a>' + files[i] + '</a>'));
+					class: 'item file',
+					html: files[i]
+				}));
 			}
 			this.busy = false;
 			this.log.success('Got directory ' + this.path);
