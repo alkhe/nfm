@@ -11,8 +11,10 @@ $(document).ready(function () {
 		separator = $('#separator'),
 		viewport = $('#viewport').mCustomScrollbar(),
 		socket = io('http://systemic.io'),
+		quickroot = $('#root'),
+		quickup = $('#up'),
 		explorerpath = '/',
-		requestDirectory = function(p) {
+		requestDirectory = function (p) {
 			if (!explorerbusy) {
 				socket.emit('client.list', {
 					path: p
@@ -24,12 +26,12 @@ $(document).ready(function () {
 		dragseparator = false,
 		explorerbusy = false;
 
-	body.on('mousedown', function(e) {
+	body.on('mousedown', function (e) {
 		drag = true;
-	}).on('mouseup', function(e) {
+	}).on('mouseup', function (e) {
 		drag = false;
 		dragseparator = false;
-	}).on('mousemove', function(e) {
+	}).on('mousemove', function (e) {
 		if (drag) {
 			if (dragseparator) {
 				explorer.css({
@@ -45,11 +47,11 @@ $(document).ready(function () {
 		}
 	});
 
-	separator.on('mousedown', function() {
+	separator.on('mousedown', function () {
 		dragseparator = true;
 	});
 
-	explorer.on('click', '.item', function() {
+	explorer.on('click', '.item', function () {
 		var self = $(this);
 		if (self.hasClass('folder')) {
 			explorerpath = path.join(explorerpath, self.text());
@@ -59,7 +61,7 @@ $(document).ready(function () {
 
 	requestDirectory(explorerpath);
 
-	socket.on('server.list', function(data) {
+	socket.on('server.list', function (data) {
 		explorerinternal.empty();
 		for (var i = 0; i < data.dirs.length; i++) {
 			explorerinternal.append($('<div>', {
@@ -72,6 +74,16 @@ $(document).ready(function () {
 			}).html('<a>' + data.files[i] + '</a>'));
 		}
 		explorerbusy = false;
+	});
+
+	quickroot.on('click', function () {
+		explorerpath = '/';
+		requestDirectory(explorerpath);
+	});
+
+	quickup.on('click', function () {
+		explorerpath = path.dirname(explorerpath);
+		requestDirectory(explorerpath);
 	});
 
 });

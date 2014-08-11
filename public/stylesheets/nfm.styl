@@ -8,6 +8,9 @@ footheight = 20px + footborder
 
 menuheight = 20px
 
+explorerquickheight = 20px
+explorerquickborder = 1px
+
 explorerwidth = 250px
 separatorwidth = 1px
 
@@ -20,12 +23,12 @@ nicewhite = #f0f0f0
 	font-family 'Gubblebum'
 
 transition(rate)
-	transition rate ease-in
 	-webkit-transition rate ease-in
+	-khtml-transition rate ease-in
 	-moz-transition rate ease-in
 	-ms-transition rate ease-in
 	-o-transition rate ease-in
-	-khtml-transition rate ease-in
+	transition rate ease-in
 
 noselect()
 	-webkit-touch-callout none
@@ -34,6 +37,14 @@ noselect()
 	-moz-user-select none
 	-ms-user-select none
 	user-select none
+
+box-sizing(sizing)
+	-webkit-box-sizing sizing
+	-khtml-box-sizing sizing
+	-moz-box-sizing sizing
+	-ms-box-sizing sizing
+	-o-box-sizing sizing
+	box-sizing sizing
 
 html, body
 	margin 0 auto
@@ -48,9 +59,12 @@ html, body
 	box-sizing border-box
 	cursor default
 
-i, .item:before
+i, .item:before, .quick
 	font-family 'FontAwesome'
 	font-style normal
+
+.item:before, .quick
+	font-size 14px
 
 a
 	text-decoration none
@@ -87,7 +101,7 @@ a
 #footer
 	bottom 0
 	height footheight
-	border-top footborder solid niceblue
+	border-top footborder solid nicegreen
 	background #101010
 
 #nfmlogo
@@ -113,9 +127,17 @@ a
 			color #7dcb9b
 			background #101010
 
-#explorer
+#explorerquick
 	position absolute
 	top menuheight
+	left 0
+	width explorerwidth
+	height explorerquickheight
+	background #101010
+
+#explorer
+	position absolute
+	top menuheight + explorerquickheight + explorerquickborder
 	left 0
 	bottom 0
 	width explorerwidth
@@ -141,15 +163,27 @@ a
 	display inline-block
 	background #141414
 
+.quick
+	display inline-block
+	height explorerquickheight
+	line-height 4px
+	padding 8px
+	transition .05s
+	&:hover
+		background #181818
+	&:active
+		color #7dcb9b
+		background #101010
+
 .item
 	padding 4px
 	transition .1s
 	&:hover
 		background #181818
 
-
 .folder:before
 	content ' '
 
 .file:before
 	content ' '
+
