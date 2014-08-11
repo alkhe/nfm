@@ -6,6 +6,15 @@ headheight = 2 * headpadding + headline + headborder
 footborder = 1px
 footheight = 20px + footborder
 
+menuheight = 20px
+
+explorerwidth = 250px
+separatorwidth = 1px
+
+nicegreen = #29c566
+niceblue = #00a0f0
+nicewhite = #f0f0f0
+
 @font-face
 	src url('/fonts/gubblebum.ttf')
 	font-family 'Gubblebum'
@@ -30,7 +39,7 @@ html, body
 	margin 0 auto
 	padding 0
 	background #202020
-	color #f0f0f0
+	color nicewhite
 	font 15px 'Source Sans Pro', sans-serif
 
 *
@@ -39,7 +48,7 @@ html, body
 	box-sizing border-box
 	cursor default
 
-i
+i, .item:before
 	font-family 'FontAwesome'
 	font-style normal
 
@@ -58,14 +67,14 @@ a
 	border-bottom headborder solid #282828
 	a
 		padding headpadding
-		color #29c566
+		color nicegreen
 		background #202020
 		display inline-block
 		height 100%
 		line-height headline
 		transition .05s
 		&:hover
-			color #d0d0d0
+			color nicewhite
 			background #282828
 		&:active
 			color #7dcb9b
@@ -78,8 +87,8 @@ a
 #footer
 	bottom 0
 	height footheight
-	border-top footborder solid #29c566
-	background #181818
+	border-top footborder solid niceblue
+	background #101010
 
 #nfmlogo
 	float left
@@ -90,13 +99,13 @@ a
 	float right
 
 #menu
-	height 20px
+	height menuheight
 	background #181818
 	.item
 		display inline-block
 		line-height 8px
 		padding 6px
-		color #f0f0f0
+		color nicewhite
 		transition .05s
 		&:hover
 			background #202020
@@ -104,3 +113,43 @@ a
 			color #7dcb9b
 			background #101010
 
+#explorer
+	position absolute
+	top menuheight
+	left 0
+	bottom 0
+	width explorerwidth
+	background #101010
+	.mCSB_container
+		width 100%
+
+#separator
+	position absolute
+	top menuheight
+	left explorerwidth
+	bottom 0
+	width separatorwidth
+	background nicegreen
+	cursor ew-resize
+
+#viewport
+	position absolute
+	top menuheight
+	left explorerwidth + separatorwidth
+	right 0
+	bottom 0
+	display inline-block
+	background #141414
+
+.item
+	padding 4px
+	transition .1s
+	&:hover
+		background #181818
+
+
+.folder:before
+	content ' '
+
+.file:before
+	content ' '

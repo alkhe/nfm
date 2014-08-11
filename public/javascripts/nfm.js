@@ -1,30 +1,77 @@
 $(document).ready(function () {
 	$('a').attr('target', '_blank');
 
-	var explorer = $('#explorer')/*.mCustomScrollbar()*/;
+	var body = $(document),
+		explorer = $('#explorer').mCustomScrollbar({
+			axis: 'y',
+			theme: 'light-thin',
+			scrollInertia: 300
+		}),
+		explorerinternal = explorer.find('.mCSB_container'),
+		separator = $('#separator'),
+		viewport = $('#viewport').mCustomScrollbar(),
+		socket = io('http://systemic.io'),
+		explorerpath = '/',
+		requestDirectory = function(p) {
+			if (!explorerbusy) {
+				socket.emit('client.list', {
+					path: p
+				});
+				explorerbusy = true;
+			}
+		},
+		drag = false,
+		dragseparator = false,
+		explorerbusy = false;
 
-	var socket = io('http://systemic.io');
-
-	/*socket.emit('list', {
-		path: '/'
+	body.on('mousedown', function(e) {
+		drag = true;
+	}).on('mouseup', function(e) {
+		drag = false;
+		dragseparator = false;
+	}).on('mousemove', function(e) {
+		if (drag) {
+			if (dragseparator) {
+				explorer.css({
+					width: e.pageX
+				});
+				separator.css({
+					left: e.pageX
+				});
+				viewport.css({
+					left: e.pageX + 1
+				});
+			}
+		}
 	});
 
-	socket.on('list.ed', function(data) {
-		console.log(data);
-		explorer.empty();
+	separator.on('mousedown', function() {
+		dragseparator = true;
+	});
+
+	explorer.on('click', '.item', function() {
+		var self = $(this);
+		if (self.hasClass('folder')) {
+			explorerpath = path.join(explorerpath, self.text());
+			requestDirectory(explorerpath);
+		}
+	});
+
+	requestDirectory(explorerpath);
+
+	socket.on('server.list', function(data) {
+		explorerinternal.empty();
 		for (var i = 0; i < data.dirs.length; i++) {
-			explorer.append($('<li>').html('<a>' + data.dirs[i] + '</a>'));
+			explorerinternal.append($('<div>', {
+				class: 'item folder'
+			}).html('<a>' + data.dirs[i] + '</a>'));
 		}
-		explorer.append($('<li>', {
-			class: 'divider'
-		}));
 		for (var i = 0; i < data.files.length; i++) {
-			explorer.append($('<li>').html('<a>' + data.files[i] + '</a>'));
+			explorerinternal.append($('<div>', {
+				class: 'item file'
+			}).html('<a>' + data.files[i] + '</a>'));
 		}
-	});*/
+		explorerbusy = false;
+	});
 
 });
-
-
-
-
