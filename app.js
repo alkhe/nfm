@@ -13,7 +13,6 @@ var io = require('socket.io')(http);
 
 var routes = require('./routes/index')(io.of('/'));
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -23,8 +22,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(require('node-sass').middleware(path.join(__dirname, 'public')));
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
