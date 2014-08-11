@@ -33,8 +33,9 @@ $(document).ready(function () {
 
 	var Explorer = can.Control.extend({
 		busy: false,
-		path: '/',
-		init: function() {
+		init: function(el, options) {
+			this.root = options.root || '/';
+			this.path = options.path || this.root;
 			this.element.find('#exfs').mCustomScrollbar({
 				axis: 'y',
 				theme: 'light-thin',
@@ -44,7 +45,7 @@ $(document).ready(function () {
 			this.requestDirectory();
 		},
 		listDirectory: function(p) {
-			if (!this.busy) {
+			if (!(this.busy || path.relative(this.root, p).match(/\.\./))) {
 				this.busy = true;
 				this.path = p;
 				this.requestDirectory();
@@ -61,12 +62,14 @@ $(document).ready(function () {
 			}
 		},
 		'#root click': function() {
-			this.listDirectory('/');
+			this.listDirectory(this.root);
 		},
 		'#up click': function() {
 			this.listDirectory(path.dirname(this.path));
 		}
-	}), ex = new Explorer('#explorer', {});
+	}), ex = new Explorer('#explorer', {
+		root: '/home/scwu'
+	});
 
 	socket.on('server.list', function (data) {
 		ex.container.empty();
